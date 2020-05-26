@@ -24,6 +24,12 @@
                 <a href="{% url 'post_detail' post.pk %}">
                     <img class="card__main-image" src="/{{ post.image.url }}">
                 </a>
+                <div class="card__title">
+                    <a href="{% url 'helloworld' %}">
+                        {{ post.author.username }}
+                    </a>
+                    <span class="card__title-s">{{post.title}}</span>
+                </div>
                 <div class="card__panel-body">
                     <div class="likes">
                         {% if post.get_like_count %}

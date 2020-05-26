@@ -14,8 +14,14 @@
                 {{ object.author.username }}
             </a>
         </div>
+        <div class="title">
+            <a href="{% url 'helloworld' %}">
+                {{ object.author.username }}
+            </a>
+            <span class="title-s">{{object.title}}</span>
+        </div>
         <div class="image__wrapper">
-            <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000' style="object-fit: scale-down">
+            <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000' >
         </div>
         <div class="comments-portion">
             <div class="likes-timestamp-row">
