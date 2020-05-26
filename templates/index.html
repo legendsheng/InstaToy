@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load custom_tags %}
-
+{% load tz %}
 {% block content %}
 
 <div class="cards-listing">
@@ -29,6 +29,8 @@
                         {{ post.author.username }}
                     </a>
                     <span class="card__title-s">{{post.title}}</span>
+                    <div class="time">{{post.created_at}}</div>
+                    
                 </div>
                 <div class="card__panel-body">
                     <div class="likes">

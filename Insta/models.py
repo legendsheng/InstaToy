@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from imagekit.models import ProcessedImageField
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 # Create your models here.
 class InstaUser(AbstractUser):
@@ -21,6 +22,8 @@ class Post(models.Model):
     )
     id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     title = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     image = ProcessedImageField(
         upload_to = 'static/images/posts',
         format = 'JPEG',

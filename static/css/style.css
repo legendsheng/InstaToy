@@ -288,6 +288,11 @@ a:hover {
       font-weight: normal;
       margin-left: 5px;
     }
+    .time{
+      font-weight: normal;
+      font-size: x-small;
+      color: #7d7d7d;
+    }
   .card__panel-body {
     padding: 20px;
     padding-bottom: 0; }

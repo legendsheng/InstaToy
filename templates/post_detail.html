@@ -19,6 +19,7 @@
                 {{ object.author.username }}
             </a>
             <span class="title-s">{{object.title}}</span>
+            <div class="time">{{object.created_at}}</div>
         </div>
         <div class="image__wrapper">
             <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000' >
