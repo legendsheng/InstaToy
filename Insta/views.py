@@ -30,10 +30,11 @@ class PostUpdateView(UpdateView):
     template_name = 'post_update.html'
     fields = ['title']
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy("posts")
+    login_url = 'login'
 
 class SignUp(CreateView):
     form_class = CustomUserCreationForm

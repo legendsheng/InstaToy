@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% comment %} {% load custom_tags %} {% endcomment %}
+{% load custom_tags %}
 
 {% block content %}
 
@@ -31,7 +31,7 @@
                         {% endif %}
                     </div>
                     <section class="input-row">
-                        <i class="fa fa-heart-o submit-like" aria-hidden="true"></i>
+                        <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
                     </section>
                     {% comment %} <ul class="comment-list">
                         <a class="view-more"></a>
