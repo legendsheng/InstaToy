@@ -15,15 +15,15 @@ class PostsView(ListView):
     model = Post
     template_name = 'index.html'
 
-    # def get_queryset(self):
-    #     if not self.request.user.is_authenticated:
-    #         return 
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return 
 
-    #     current_user = self.request.user
-    #     following = set()
-    #     for conn in UserConnection.objects.filter(follows_user=current_user).select_related('followed_user'):
-    #         following.add(conn.followed_user)
-    #     return Post.objects.filter(author__in=following)
+        current_user = self.request.user
+        following = set()
+        for conn in UserConnection.objects.filter(follows_user=current_user).select_related('followed_user'):
+            following.add(conn.followed_user)
+        return Post.objects.filter(author__in=following)
 
 
 class PostDetailView(DetailView):
@@ -55,6 +55,18 @@ class SignUp(CreateView):
 class UserDetailView(DetailView):
     model = InstaUser
     template_name = 'user_detail.html'
+
+class EditUserView(LoginRequiredMixin,UpdateView):
+    model = InstaUser
+    template_name = 'user_update.html'
+    fields = ['profile_pic', 'username']
+    login_url = 'login'
+    def get_success_url(self):
+          # if you are passing 'pk' from 'urls' to 'DeleteView' for company
+          # capture that 'pk' as companyid and pass it to 'reverse_lazy()' function
+          userid=self.kwargs['pk']
+          return reverse_lazy('user_detail', kwargs={'pk': userid})
+
 @ajax_request
 def addLike(request):
     post_pk = request.POST.get('post_pk')
