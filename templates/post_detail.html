@@ -7,7 +7,7 @@
 <div class="row single-post">
     <div class="single-post-card view-update {{ object.pk }}">
         <div class="header">
-            <a href="{% url 'helloworld' %}">
+            <a href="{% url 'user_detail' object.author.id %}">
                 {% if object.author.profile_pic %}
                     <img class="picture-circle--medium" src="http://{{ request.META.HTTP_HOST }}/{{object.author.profile_pic.url}}">
                 {% endif %}
@@ -15,7 +15,7 @@
             </a>
         </div>
         <div class="title">
-            <a href="{% url 'helloworld' %}">
+            <a href="{% url 'user_detail' object.author.id %}">
                 {{ object.author.username }}
             </a>
             <span class="title-s">{{object.title}}</span>

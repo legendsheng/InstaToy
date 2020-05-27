@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.simple_tag
 def is_following(current_user, background_user):
-    return background_user.get_followers().filter(creator=current_user).exists()
+    return background_user.get_followers().filter(follows_user=current_user).exists()
 
 @register.simple_tag
 def has_user_liked_post(post, user):
