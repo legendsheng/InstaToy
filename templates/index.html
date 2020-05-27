@@ -40,6 +40,9 @@
                     </div>
                     <section class="input-row">
                         <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
+                        <div class="hidden-data {{ post.pk }}" style="display: none;">
+                            <span class="post-pk">{{ post.pk }}</span>
+                        </div>
                     </section>
                     {% comment %} <ul class="comment-list">
                         <a class="view-more"></a>
