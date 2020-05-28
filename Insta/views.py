@@ -5,7 +5,7 @@ from annoying.decorators import ajax_request
 from Insta.models import Post, Like, UserConnection, InstaUser
 
 from django.contrib.auth.forms import UserCreationForm
-from Insta.form import CustomUserCreationForm
+from Insta.form import CustomUserCreationForm, CustomPostCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HelloWorld(TemplateView):
@@ -31,10 +31,13 @@ class PostDetailView(DetailView):
     template_name = 'post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
+    form_class = CustomPostCreationForm
     template_name = 'post_create.html'
-    fields = '__all__'
     login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class PostUpdateView(UpdateView):
     model = Post
