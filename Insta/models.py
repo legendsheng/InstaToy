@@ -103,4 +103,4 @@ class Comment(models.Model):
     posted_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.comment
+        return self.user.username + ' comments ' + self.comment + ' on ' + self.post.title

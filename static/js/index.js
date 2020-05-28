@@ -84,7 +84,7 @@ function create_comment(success_cb, error_cb) {
   
     $.ajax({
       type: "POST",
-      url: '/comment',
+      url: '/insta/comment/',
       data: {
         comment_text: comment_text,
         post_pk: post_pk

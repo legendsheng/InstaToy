@@ -25,6 +25,17 @@
             <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000' >
         </div>
         <div class="comments-portion">
+            <ul class="comment-list">
+                {% for comment in object.comments.all %}
+                <li class="comment-list__comment">
+                    <a href="{% url 'user_detail' comment.user.pk %}" class="user">
+                        {{ comment.user.username }}
+                    </a>
+                    <span class="comment">{{ comment.comment }}</span>
+                    <div class="time">{{ comment.posted_on|timesince }} ago</div>
+                </li>
+                {% endfor %}
+            </ul>
             <div class="likes-timestamp-row">
                 <div class="likes">
                     {% if object.get_like_count %}
@@ -35,28 +46,23 @@
                     {{ object.posted_on|timesince }}
                 </div> {% endcomment %}
             </div>
-            {% comment %} <ul class="comment-list">
-                {% for comment in object.comments.all %}
-                <li class="comment-list__comment">
-                    <a href="{% url 'profile' comment.user.pk %}" class="user">
-                        {{ comment.user.username }}
-                    </a>
-                    <span class="comment">{{ comment.comment }}</span>
-                </li>
-                {% endfor %}
-            </ul> {% endcomment %}
+            
             <section class="input-row">
                 {% comment %} <i class="fa {% if liked %}fa-heart{% else %}fa-heart-o{% endif %} submit-like" aria-hidden="true"></i> {% endcomment %}
                 <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
                 <div class="hidden-data {{ post.pk }}" style="display: none;">
                     <span class="post-pk">{{ post.pk }}</span>
                 </div>
-                {% comment %} <div class="comment-input-wrapper">
+            </section>
+            
+            <section class="input-row" style="padding-left: 0px;">
+                <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
+                <div class="comment-input-wrapper">
                     <input class="add-comment" type="text" placeholder="Add a comment...">
                 </div>
                 <div class="hidden-data {{ object.pk }}" style="display: none;">
                     <span class="post-pk">{{ object.pk }}</span>
-                </div> {% endcomment %}
+                </div>
             </section>
         </div>
     </div>
