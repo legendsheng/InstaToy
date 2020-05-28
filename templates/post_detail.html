@@ -19,7 +19,7 @@
                 {{ object.author.username }}
             </a>
             <span class="title-s">{{object.title}}</span>
-            <div class="time">{{object.created_at}}</div>
+            <div class="time">{{ post.created_at|timesince }} ago</div>
         </div>
         <div class="image__wrapper">
             <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000' >
@@ -31,9 +31,9 @@
                         {{ object.get_like_count }} like{% if object.get_like_count > 1 %}s{% endif %}
                     {% endif %}
                 </div>
-                <div class="timestamp">
+                {% comment %} <div class="timestamp">
                     {{ object.posted_on|timesince }}
-                </div>
+                </div> {% endcomment %}
             </div>
             {% comment %} <ul class="comment-list">
                 {% for comment in object.comments.all %}

@@ -17,7 +17,7 @@
                             {{ post.author.username }}
                         </a>
                         {% comment %} <span class="poster__timestamp">
-                            {{ post.posted_on|timesince }}
+                            {{ post.created_at|timesince }} ago
                         </span> {% endcomment %}
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         {{ post.author.username }}
                     </a>
                     <span class="card__title-s">{{post.title}}</span>
-                    <div class="time">{{post.created_at}}</div>
+                    <div class="time">{{ post.created_at|timesince }} ago</div>
                     
                 </div>
                 <div class="card__panel-body">
