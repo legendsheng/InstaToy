@@ -59,6 +59,15 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("posts")
     login_url = 'login'
 
+class ExploreView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'explore.html'
+    login_url = 'login'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-created_at')[:20]
+
+
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'signup.html'
