@@ -30,14 +30,14 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
 
-    # def get_context_data(self, **kwargs):
-    #     data = super().get_context_data(**kwargs)
-    #     liked = Like.objects.filter(post=self.kwargs.get('pk'), user=self.request.user).first()
-    #     if liked:
-    #         data['liked'] = 1
-    #     else:
-    #         data['liked'] = 0
-    #     return data
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        liked = Like.objects.filter(post=self.kwargs.get('pk'), user=self.request.user).first()
+        if liked:
+            data['liked'] = 1
+        else:
+            data['liked'] = 0
+        return data
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = CustomPostCreationForm
