@@ -39,6 +39,20 @@ class FollowersView(ListView):
             following.add(conn.follows_user)
         return InstaUser.objects.filter(username__in=following)
 
+class FollowingsView(ListView):
+    model = InstaUser
+    template_name = 'followings.html'
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return 
+
+        current_user = self.kwargs['pk']
+        following = set()
+        for conn in UserConnection.objects.filter(follows_user=current_user).select_related('followed_user'):
+            following.add(conn.followed_user)
+        return InstaUser.objects.filter(username__in=following)        
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
