@@ -400,6 +400,14 @@ a:hover {
       font-weight: normal;
       margin-left: 5px;
     }
+  .single-post-card .edit {
+    position: absolute;
+    bottom: 72%;
+    right: 0;
+    width: 335px;
+    padding: 0 24px;
+    flex-direction: column;
+    font-weight: bold; }
   .single-post-card .comments-portion {
     position: absolute;
     bottom: 0;
